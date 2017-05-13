@@ -72,34 +72,37 @@ public class CollisionLogic {
 	}
 	
 	public static void checkBrickCollision(Ball ball, Brick brick) {
-		int brickRight = brick.getX() + (brick.getWidth() / 2);
-		int brickLeft = brick.getX() - (brick.getWidth() / 2);
-		int brickTop = brick.getY() - (brick.getHeight() / 2);
-		int brickBottom = brick.getY() + (brick.getHeight() / 2);
-		
-		if (brick.brickLifes > 0) {
-			if (ball.getX() >= brickLeft && ball.getX() <= brickRight && ball.getY() >= brickTop && ball.getY() <= brickBottom) {
-			  
-     
-	       if(ball.getX() >= brickLeft) {	          
-	          ball.setDirX(-1);
-	       }
-
-	       if(ball.getX() <= brickRight) {
-            ball.setDirX(1);
-         }
-
-         if(ball.getY() >= brickTop) {
-           ball.setDirY(-1);
-         }
-
-         if(ball.getY() <= brickBottom) {
-             ball.setDirY(1);
-         }
-
-         brick.loseLife();
-			}
-		}
+    int brickRight = brick.getX() + (brick.getWidth() / 2);
+    int brickLeft = brick.getX() - (brick.getWidth() / 2);
+    int brickTop = brick.getY() - (brick.getHeight() / 2);
+    int brickBottom = brick.getY() + (brick.getHeight() / 2);
+    boolean collision = false;
+    
+    if (brick.brickLifes > 0) {
+      if (ball.getX() >= brickLeft && ball.getX() <= brickRight && ball.getY() >= brickTop && ball.getY() <= brickBottom) {
+        if(ball.getX() >= brickLeft && ball.getX() < brick.getX()) {
+          ball.setDirX(-1);
+          collision = true;
+        }
+        if(ball.getX() >= brickRight && ball.getX() > brick.getX()) {
+          ball.setDirX(1);
+          collision = true;
+        }
+        if(ball.getY() <= brickBottom && ball.getY() > brick.getY()) {
+          ball.setDirY(1);
+          collision = true;
+        }
+        if(ball.getY() >= brickTop && ball.getY() < brick.getY()) {
+          ball.setDirY(-1);
+          collision = true;
+        }
+        
+        if(collision == true) {
+          brick.loseLife();
+          collision = false;
+        }
+      } 
+    }
 	}
 	
 	public static void checkWallCollision(Ball ball, Wall wall) {
