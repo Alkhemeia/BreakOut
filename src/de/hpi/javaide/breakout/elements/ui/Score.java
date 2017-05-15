@@ -25,7 +25,7 @@ public class Score extends UIObject {
 
 	@Override
 	public void update(String input) {
-		// TODO Auto-generated method stub
+	  addPoints(Integer.parseInt(input));
 		
 	}
 }

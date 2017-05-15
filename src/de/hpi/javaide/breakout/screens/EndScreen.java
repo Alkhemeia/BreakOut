@@ -1,5 +1,6 @@
 package de.hpi.javaide.breakout.screens;
 
+import de.hpi.javaide.breakout.basics.Font;
 import de.hpi.javaide.breakout.basics.UIObject;
 import de.hpi.javaide.breakout.elements.ui.Info;
 import de.hpi.javaide.breakout.starter.Game;
@@ -73,7 +74,9 @@ public class EndScreen implements Screen {
 
 	@Override
 	public void display() {
-		System.out.println("Game over: Hit enter to restart.");
+    game.fill(255);
+    game.textFont(Font.getFont16());
+    game.text("Game over!!!\nHit enter to restart.", game.width/2, game.height/2);
 		infoBox.display();
 	}
 

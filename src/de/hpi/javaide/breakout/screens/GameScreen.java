@@ -38,8 +38,8 @@ public class GameScreen implements Screen {
 	/** 
 	 * Plus some UIObjects to display the score and the timer
 	 */
-	private UIObject score;
-	private UIObject timer;
+	private Score score;
+	private Timer timer;
 
 	/** 
 	 * And of course a reference to access the Processing features
@@ -95,13 +95,18 @@ public class GameScreen implements Screen {
 	@Override
 	public void update() {
 		
-		if (!ballDepot.isEmpty()) {
+		if (!ballDepot.isEmpty() && timer.getTime() >= 0) {
 			currentBall = ballDepot.dispense();
 			
 			if (currentBall != null) {
 				currentBall.move();
-				CollisionLogic.checkCollision(game, currentBall, paddle, wall);
+				if (CollisionLogic.checkCollision(game, currentBall, paddle, wall)) {
+				  score.addPoints(10);
+				}
 			}
+		}
+		else {
+		  ScreenManager.setScreen(game, Screen.END);
 		}
 		
 		timer.update(null);
@@ -116,12 +121,8 @@ public class GameScreen implements Screen {
 		ballDepot.display();
 		if (currentBall != null) {
 			currentBall.display();
-		} else {
-			// there is no more Ball in the game and the depot is empty.
-			if (ballDepot.isEmpty()) {
-				ScreenManager.setScreen(game, Screen.END);
-			}
 		}
+		
 		paddle.display();
 		wall.display();
 		score.display();

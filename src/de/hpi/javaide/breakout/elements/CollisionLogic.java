@@ -2,6 +2,7 @@ package de.hpi.javaide.breakout.elements;
 
 import java.time.chrono.IsoChronology;
 
+import de.hpi.javaide.breakout.elements.ui.Score;
 import de.hpi.javaide.breakout.starter.Game;
 
 //TODO den Fehler unten haben wir absichtlich eingebaut, um zu zeigen, dass hier noch was getan werden muss.
@@ -27,7 +28,7 @@ public class CollisionLogic {
 	 * @param paddle
 	 * @param wall
 	 */
-	public static void checkCollision(Game game, Ball ball, Paddle paddle, Wall wall) {
+	public static boolean checkCollision(Game game, Ball ball, Paddle paddle, Wall wall) {
 		if (ball.getX() <= 0) {
 			ball.setDirX(1);
 		}
@@ -42,8 +43,14 @@ public class CollisionLogic {
 			
 		}
 		checkPaddleCollision(ball, paddle);
-		checkWallCollision(ball, wall);
+		if (checkWallCollision(ball, wall)) {
+		  return true;
+		}
+		else {
+		  return false;
+		}
 	}
+		
 	
 	public static void checkPaddleCollision(Ball ball, Paddle paddle) {
 		int paddleRightEnd = paddle.getX() + (paddle.getWidth() / 2);
@@ -71,7 +78,7 @@ public class CollisionLogic {
 		
 	}
 	
-	public static void checkBrickCollision(Ball ball, Brick brick) {
+	public static boolean checkBrickCollision(Ball ball, Brick brick) {
     int brickRight = brick.getX() + (brick.getWidth() / 2);
     int brickLeft = brick.getX() - (brick.getWidth() / 2);
     int brickTop = brick.getY() - (brick.getHeight() / 2);
@@ -99,15 +106,19 @@ public class CollisionLogic {
         
         if(collision == true) {
           brick.loseLife();
-          collision = false;
         }
       } 
     }
+    return collision;
 	}
 	
-	public static void checkWallCollision(Ball ball, Wall wall) {
-		for (Brick brick : wall) {
-			checkBrickCollision(ball, brick);
+	public static boolean checkWallCollision(Ball ball, Wall wall) {
+		boolean collision = false;
+	  for (Brick brick : wall) {
+			if (checkBrickCollision(ball, brick)) {
+			  collision = true;
+			}
 		}
+	  return collision;
 	}
 }

@@ -50,11 +50,13 @@ public class BallDepot implements Displayable, Measureable {
 	}
 
 	public boolean isEmpty() {
+	  boolean empty = true;
 		for (Ball ball : balls) {
 		    if (ball.ballLost == false)
-		        return false;
+		        empty = false;
 		}
-		return true;
+		
+		return empty;
 	}
 
 	public Ball dispense() {
