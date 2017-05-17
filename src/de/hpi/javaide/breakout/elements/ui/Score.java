@@ -18,14 +18,17 @@ public class Score extends UIObject {
     game.textFont(Font.getFont16());
     game.text("Score: " + score, game.width-150, game.height-50);		
 	}
-	
-	public void addPoints(int points) {
-	  this.score += points;
-	}
 
 	@Override
 	public void update(String input) {
 	  addPoints(Integer.parseInt(input));
-		
+	}
+	
+	public void addPoints(int points) {
+	    this.score += points;
+	}
+	
+	public int getScore() {
+	  return this.score;
 	}
 }

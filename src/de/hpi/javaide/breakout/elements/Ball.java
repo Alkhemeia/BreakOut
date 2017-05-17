@@ -24,10 +24,10 @@ import processing.core.PApplet;
 public class Ball extends Elliptic {
 	
 	public boolean ballLost = false;
-	int posX;
-	int posY;
-	int dirX = 0;
-	int dirY = 0;
+	private int posX;
+	private int posY;
+	private int dirX = 0;
+	private int dirY = 0;
 	
 	public Ball(Game game, Point position) {
 		super(game, position, new Dimension(10, 10));
@@ -56,6 +56,14 @@ public class Ball extends Elliptic {
 	public int getY() {
 		return this.posY;
 	}
+	
+	 public void setX(int pos) {
+	    this.posX = pos;
+	  }
+	  
+	  public void setY(int pos) {
+	    this.posY = pos;
+	  }
 	
 	public void turnX() {
 		this.dirX = this.dirX * -1;

@@ -87,11 +87,11 @@ public class CollisionLogic {
     
     if (brick.brickLifes > 0) {
       if (ball.getX() >= brickLeft && ball.getX() <= brickRight && ball.getY() >= brickTop && ball.getY() <= brickBottom) {
-        if(ball.getX() >= brickLeft && ball.getX() < brick.getX()) {
+        if(ball.getX() >= brickLeft && ball.getX() < brick.getX() && ball.getY() > brickTop && ball.getY() < brickBottom) {
           ball.setDirX(-1);
           collision = true;
         }
-        if(ball.getX() >= brickRight && ball.getX() > brick.getX()) {
+        if(ball.getX() >= brickRight && ball.getX() > brick.getX() && ball.getY() > brickTop && ball.getY() < brickBottom) {
           ball.setDirX(1);
           collision = true;
         }

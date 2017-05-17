@@ -9,7 +9,7 @@ import de.hpi.javaide.breakout.starter.Game;
 
 public class Info extends UIObject {
 
-	private String content;
+	//private String content;
 	
 	public Info(Game game, String content) {
 		super(game);

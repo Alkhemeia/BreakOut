@@ -3,6 +3,7 @@ package de.hpi.javaide.breakout.elements;
 import java.awt.Dimension;
 import java.awt.Point;
 
+import de.hpi.javaide.breakout.basics.Font;
 import de.hpi.javaide.breakout.basics.Rectangular;
 import de.hpi.javaide.breakout.starter.Game;
 import processing.core.PApplet;
@@ -29,7 +30,7 @@ public class Brick extends Rectangular {
 		this.brickLifes--;
 		setColor();
 	}
-	
+
 	private void setColor() {
 		int red = 255;
 		int green = 255;

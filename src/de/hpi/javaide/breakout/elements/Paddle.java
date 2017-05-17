@@ -13,7 +13,7 @@ import processing.core.PApplet;
  */
 public class Paddle extends Rectangular {
 	public Paddle(Game game) {
-		super(game, new Point(game.width / 2, game.height - 20), new Dimension(100, 20));
+		super(game, new Point(game.mouseX, game.height - 20), new Dimension(100, 20));
 		setColor(150, 150, 150);
 	}
 
@@ -28,4 +28,5 @@ public class Paddle extends Rectangular {
 	public void move() {
 		update(new Point(game.mouseX, getY()), new Dimension(getWidth(), getHeight()));
 	}
+	
 }

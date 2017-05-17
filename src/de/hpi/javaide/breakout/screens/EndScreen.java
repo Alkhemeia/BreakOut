@@ -85,7 +85,7 @@ public class EndScreen implements Screen {
 		switch (key) {
 		case Screen.KEY_ENTER:
 			System.out.println("restart..");
-			ScreenManager.setScreen(game, Screen.START);
+			ScreenManager.setScreen(game, Screen.GAME);
 		}
 	}
 

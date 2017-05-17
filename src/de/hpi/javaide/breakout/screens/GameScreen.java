@@ -1,11 +1,12 @@
 package de.hpi.javaide.breakout.screens;
 
-import de.hpi.javaide.breakout.basics.UIObject;
+//import de.hpi.javaide.breakout.basics.UIObject;
 import de.hpi.javaide.breakout.elements.Ball;
 import de.hpi.javaide.breakout.elements.BallDepot;
 import de.hpi.javaide.breakout.elements.CollisionLogic;
 import de.hpi.javaide.breakout.elements.Paddle;
 import de.hpi.javaide.breakout.elements.Wall;
+import de.hpi.javaide.breakout.elements.ui.Info;
 import de.hpi.javaide.breakout.elements.ui.Score;
 import de.hpi.javaide.breakout.elements.ui.Timer;
 import de.hpi.javaide.breakout.starter.Game;
@@ -81,8 +82,8 @@ public class GameScreen implements Screen {
 	 */
 	@Override
 	public void init() {
-		ballDepot = new BallDepot(game);
 		paddle = new Paddle(game);
+		ballDepot = new BallDepot(game);
 		wall = new Wall(game, 6, 7);
 		score = new Score(game);
 		timer = new Timer(game);
